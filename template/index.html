@@ -1,0 +1,30 @@
+{% extends 'base/login.html' %}
+
+{% block title %} Iniciar Sesión  {% endblock %}
+
+{% block contenido %}
+	<div class="d-flex justify-content-center">
+		<form action="" method="post">
+			{%csrf_token %}
+			<div class="row">
+				<div class="col-md-12">
+					<div class ="form-group">
+						<label form="username">Usuario:</label>
+						<input class="form-control" type="text" name="username">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class ="form-group">
+						<label form="username">Contraseña:</label>
+						<input class="form-control" type="password" name="password">
+					</div>
+				</div>
+			</div>
+			<p><input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesión"></p>
+		</form>	
+	</div>
+
+
+{% endblock %}
+
+{%csrf_token %}

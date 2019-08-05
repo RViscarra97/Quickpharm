@@ -1,0 +1,26 @@
+
+{% extends 'base/base.html' %}
+
+{% block title %} Detalle Venta  {% endblock %}
+{% block contenido %}
+	<div class="card">
+		 <div class="card-header">
+		 Detalle Venta
+		 </div>
+		 	<div class="card-body">
+		 		<form method ="POST">
+		 			{% csrf_token %}
+		 			<div class="row">
+			 			<div class="col-md-12">
+			 				<label>Cantidad de Producto a comprar</label>
+			 				{{form.cantidad}}	
+			 			</div>
+		 			</div>
+		 			<p></p>
+		 			<button class="btn btn-success">Guardar</button>
+		 			<a class="btn btn-danger" href="{% url 'ordenventa' venta_id%}">Regresar<a>
+
+		 		</form>
+		 	</div>
+		 </div>			         
+{% endblock %}

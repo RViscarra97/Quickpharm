@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %} Registros/Compras  {% endblock %}
+
+{% block contenido %}
+<div class="card">
+  <h5 class="card-header">Listado de Compras</h5>
+  <div class="card-body">
+  	<div class="float-right">
+  		<a class="btn btn-outline-success" href="{% url 'compra_crear' %}">Registrar Compra</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<div class="table-responsive">
+		<table class="table table-bordered" id="example" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+			<thead>
+			        <th>Código</th>
+			        <th>Fecha</th>
+			        <th>Proveedor</th>
+			        <th>Acciones</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for compra in compras %}
+				    <tr>
+				        <td>{{compra.codigoCompra}} </td>
+				        <td>{{compra.fechaEmision}}</td>
+				        <td>{{compra.proveedor}}</td>
+				        <td>
+				        	<a class="btn btn-success" href="{% url 'vercompra' compra.codigoCompra %}">Ver</a>
+				        	<a class="btn btn-success" href="{% url 'detallecompra' compra.codigoCompra %}">Modificar</a>
+				        	<a class="btn btn-success" href="{% url 'detallecompra_crear' compra.codigoCompra %} ">Agregar</a>
+				        </td>
+				    </tr>
+				{% endfor %}
+				<tbody>
+		</table>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block title %} Registros/Productos  {% endblock %}
+{% block contenido %}
+<div class="card">
+  <h5 class="card-header">Listado de Productos</h5>
+  <div class="card-body">
+  	<div class="float-right">
+  		<a class="btn btn-outline-success" href="{% url 'producto_crear' %}">Registrar Medicamento</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<div class="table-responsive">
+		<table class="table table-bordered" id="example" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+			<thead>
+			        <th>Codigo del Medicamento</th>
+			        <th>Nombre del Medicamento</th>
+			        <th>Precio ($)</th>
+			        <th>Acciones</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for producto in productos %}
+				    <tr>
+				        <td>{{producto.codigoMedicamento}}</td>
+				        <td>{{producto.nombre}}</td>
+				        <td>{{producto.precio}}</td>
+				        <td>
+				        	<a class="btn btn-success" href="{% url 'productoEdit' producto.codigoMedicamento%} ">Modificar</a>
+				        </td>
+				    </tr>
+				{% endfor %}
+		</table>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+{% endblock %}

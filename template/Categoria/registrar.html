@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Ingresar/Caja  {% endblock %}
+
+{% block contenido %}
+	<div class="card">
+		 <div class="card-header">
+		 Caja
+		 </div>
+		 	<div class="card-body">
+		 		<form method ="POST">
+		 			{% csrf_token %}
+		 			{% for field in form %}
+		 			<div class="row">
+		 			<div class="col-md-12">
+		 				{{field.label_tag}}
+		 				{{field}}
+		 			</div>
+		 			</div>
+		 			{% endfor %}
+		 			<p></p>
+		 			<button class="btn btn-success">Guardar</button>
+		 		</form>
+		 	</div>
+		 </div>			         
+{% endblock %}
