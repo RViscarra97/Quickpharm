@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block title %} Registros/Cajas  {% endblock %}
+{% block contenido %}
+<div class="card">
+  <h5 class="card-header">Listado de Cajas</h5>
+  <div class="card-body">
+  	<div class="float-right">
+  		<a class="btn btn-outline-success" href="{% url 'categoria_crear' %}">Registrar Caja</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<div class="table-responsive">
+		<table class="table table-bordered" id="example" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+			<thead>
+			        <th>Codigo Caja</th>
+			        <th>Unidades por caja</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for categoria in categorias %}
+				    <tr>
+				        <td>{{categoria.codigo}}</td>
+				        <td>{{categoria.cantidadCaja}}</td>
+
+				    </tr>
+				{% endfor %}
+		</table>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+{% endblock %}

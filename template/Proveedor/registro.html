@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% block title %} Registros/Proveedores  {% endblock %}
+{% block contenido %}
+<div class="card">
+  <h5 class="card-header">Listado de Proveedores</h5>
+  <div class="card-body">
+  	<div class="float-right">
+  		<a class="btn btn-outline-success" href="{% url 'proveedor_crear' %}">Registrar Proveedor</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<div class="table-responsive">
+		<table class="table table-bordered" id="example" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+			<thead>
+			        <th>Nombre</th>
+			        <th>Empresa</th>
+			        <th>Correo Electrónico</th>
+			        <th>Teléfono</th>
+			        <th>Dirección</th>
+			        <th>Acciones</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for proveedor in Proveedores %}
+				    <tr>
+				        <td>{{proveedor.nombreProveedor}} {{proveedor.apellidoProveedor}}</td>
+				        <td>{{proveedor.empresa}}</td>
+				        <td>{{proveedor.correoElectronico}}</td>
+				        <td>{{proveedor.telefono}}</td>
+				        <td>{{proveedor.direccion}}</td>
+				        <td>
+				        	<a class="btn btn-success" href="{% url 'proveedorEdit' proveedor.codigoProveedor%} ">Modificar</a>
+				        </td>
+				    </tr>
+				{% endfor %}
+		</table>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+{% endblock %}

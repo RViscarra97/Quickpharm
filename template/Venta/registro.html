@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %} Ventas  {% endblock %}
+
+{% block contenido %}
+<div class="card">
+  <h5 class="card-header">Listado de Ventas</h5>
+  <div class="card-body">
+  	<div class="float-right">
+  		<a class="btn btn-outline-success" href="{% url 'venta_crear' %}">Registrar Venta</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<br/>
+  	<div class="table-responsive">
+		<table class="table table-bordered" id="example" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+			<thead>
+			        <th>Código</th>
+			        <th>Fecha</th>
+			        <th>Acciones</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% for venta in ventas %}
+				    <tr>
+				        <td>{{venta.codigoVenta}} </td>
+				        <td>{{venta.fecha}}</td>
+				        <td>
+				        	<a class="btn btn-success" href="{% url 'ver' venta.codigoVenta%}">Ver</a>
+				        	<a class="btn btn-success" href="{% url 'ordenventa' venta.codigoVenta%}">Modificar</a>
+				        	<a class="btn btn-success" href="{% url 'ordenventa_crear' venta.codigoVenta%}">Agregar</a>
+				        </td>
+				    </tr>
+				{% endfor %}
+		</table>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+{% endblock %}

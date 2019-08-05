@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% block title %} Detalle/Venta  {% endblock %}
+{% block contenido %}
+<div class="card">
+  	<h5 class="card-header"> Tiquete </h5>
+  	<div class="card-body">
+	  	<a href="#" onclick="HTMLtoPDF()">Imprimir</a>
+		<div id="HTMLtoPDF">
+			<h5>HDP115 Herramientas de Productividad</h5>
+			<h5>Universidad de El Salvador</h5>
+			<h5>QuickPharm</h5>
+		  	<br/>
+		  	<div class="table-responsive">
+				<table class="table table-bordered" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+					<thead>
+					        <th>Producto</th>
+					        <th>Cantidad</th>
+					        <th>Precio de Venta ($)</th>
+					        <th>SubTotal ($)</th>
+					</thead>
+					<tbody>
+						{% for ordenventa in ordenventas %}
+						    <tr>
+						        <td>{{ordenventa.producto}}</td>
+						        <td>{{ordenventa.cantidad}}</td>
+						        <td>{{ordenventa.precioVenta}}</td>
+						        <td>{{ordenventa.subTotal}}</td>
+						    </tr>
+						{% endfor %}
+							<tr>
+						        <td> Total:</td>
+						        <td></td>
+						        <td></td>
+						        <td>{{total|floatformat:2 	}}</td>
+						    </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<a class="btn btn-danger" href="{% url 'venta' %}">Regresar</a>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready( function () {
+       var table=$('#example').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            responsive:true,
+        });
+    } );
+</script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+{% endblock %}
